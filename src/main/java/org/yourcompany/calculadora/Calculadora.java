@@ -1,7 +1,5 @@
-
-
 package org.yourcompany.calculadora;
-
+import java.util.Random;
 /**
  *
  * @author Posa el teu nom
@@ -11,6 +9,11 @@ package org.yourcompany.calculadora;
 public class Calculadora {
 
     public static void main(String[] args) {
+        System.out.println("Nombre de cares en 50 llançaments: " + numcares(50));
+        System.out.println("Nombre de cares en 100 llançaments: " + numcares(100));
+        System.out.println("Nombre de cares en 1000 llançaments: " + numcares(1000));    
+
+        PreuCinema(5,true,true);
 
         // Exemples de crida per al mètode nombreDigits
         System.out.println("Nombre de dígits de 1234: " + nombreDigits(1234));
@@ -18,6 +21,8 @@ public class Calculadora {
         System.out.println("Nombre de dígits de -101010: " + nombreDigits(-101010));
         System.out.println("Nombre de dígits de 0: " + nombreDigits(0));
 
+       
+    
         // Exemples de crida per al mètode sumaPrimersNumeros
         // System.out.println("Suma dels primers 5 números: " + sumaPrimersNumeros(5));
         // System.out.println("Suma dels primers 10 números: " + sumaPrimersNumeros(10));
@@ -41,15 +46,36 @@ public class Calculadora {
        
         
     }
+    public static int numcares(int repeticions) {
+    Random random = new Random();
+    int cara =0;
+    int intent =0;
+    while(intent < repeticions){
+    int moneda = random.nextInt(0,2);
+    intent++;
+    if(moneda == 1){
+     cara++;
+    }
 
-    /**
-     * Calcula el nombre de dígits d’un número enter.
-     * Funciona tant per a nombres positius com negatius.
-     * Si el nombre és 0, retorna 1.
-     *
-     * @param nombre Número del qual es vol saber el nombre de dígits
-     * @return Quantitat de dígits que té {@code nombre}
-     */
+    }
+    return cara;
+    
+    }
+
+    public static double PreuCinema(double Preu,boolean capdesetmana,boolean carnetjove) {
+        
+        
+        if (capdesetmana) {
+            Preu = Preu * 1.1; // Increment del 10% si és cap de setmana
+        }
+        if (carnetjove) {
+            Preu = Preu * 0.85; // Descompte del 15% si té carnet jove
+        }
+        return Preu;        
+      
+     }
+    
+
     public static int nombreDigits(int nombre) {
         if (nombre == 0) {
             return 1; // el 0 té un dígit
