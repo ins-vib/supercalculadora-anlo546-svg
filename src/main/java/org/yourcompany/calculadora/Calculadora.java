@@ -1,127 +1,128 @@
 package org.yourcompany.calculadora;
-import java.util.Random;
-/**
- *
- * @author Posa el teu nom
- */
-
+import java.util.Scanner;
 
 public class Calculadora {
 
     public static void main(String[] args) {
-        //System.out.println("Nombre de cares en 50 llançaments: " + numcares(50));
-        //System.out.println("Nombre de cares en 100 llançaments: " + numcares(100));
-        //System.out.println("Nombre de cares en 1000 llançaments: " + numcares(1000));    
-
-        PreuCinema(5,true,true);
-        
-    
-
-        // Exemples de crida per al mètode nombreDigits
-        System.out.println("Nombre de dígits de 1234: " + nombreDigits(1234));
-        System.out.println("Nombre de dígits de 56789: " + nombreDigits(56789));
-        System.out.println("Nombre de dígits de -101010: " + nombreDigits(-101010));
-        System.out.println("Nombre de dígits de 0: " + nombreDigits(0));
-
-    
-        // Exemples de crida per al mètode sumaPrimersNumeros
-        System.out.println("Suma dels primers 5 números: " + sumaPrimersNumeros(5));
-        System.out.println("Suma dels primers 10 números: " + sumaPrimersNumeros(10));
-        System.out.println("Suma dels primers 15 números: " + sumaPrimersNumeros(15));
-
-
-        // Exemples de crida per al mètode calcularFactorial
-        System.out.println("Factorial de 5: " + calcularFactorial(5));
-        System.out.println("Factorial de 7: " + calcularFactorial(7));
-        System.out.println("Factorial de 10: " + calcularFactorial(10));
-
-        // Exemples de crida per al mètode sumaQuadrats
-        System.out.println("Suma dels quadrats dels primers 3 números: " + sumaQuadrats(3));
-        System.out.println("Suma dels quadrats dels primers 5 números: " + sumaQuadrats(5));
-        System.out.println("Suma dels quadrats dels primers 7 números: " + sumaQuadrats(7));
-
-        // Exemples de crida per al mètode calcularPotencia
-        System.out.println("2 elevat a la potència 3: " + calcularPotencia(2, 3));
-        System.out.println("5 elevat a la potència 4: " + calcularPotencia(5, 4));
-        System.out.println("3 elevat a la potència 5: " + calcularPotencia(3, 5));
-
-       
-        
+        // Llamada al menú interactivo
+        Mostrar_Menu(0);
     }
 
-    public static  int sumaPrimersNumeros(int n) {
-    int suma = 1;
-    for (int i = 1; i <=n; i++) {
-        suma +=i;
-    }
-    return suma;
+    public static void Mostrar_Menu(int n) {
+        Scanner lector = new Scanner(System.in);
+        int eleccion = 0;
+        
+        while (eleccion != 6) {
+            System.out.println("---MENU---");
+            System.out.println("1. Número de dígits");
+            System.out.println("2. Suma primeros números");
+            System.out.println("3. Calcular factorial");
+            System.out.println("4. Suma de cuadrados");
+            System.out.println("5. Calcular potencia");
+            System.out.println("6. Salir");
+            System.out.print("Elige una opción: ");
+            
+            eleccion = lector.nextInt();
+            
+            switch (eleccion) {
+                case 1:
+                    System.out.println("Has escogido: Número de dígits");
+                    System.out.print("Introduce un número: ");
+                    int num = lector.nextInt();
+                    int resultadoDigits = nombreDigits(num);  // Aquí declaramos y calculamos la cantidad de dígitos
+                    System.out.println("Número de dígits: " + resultadoDigits);
+                    break;
+
+                case 2:
+                    System.out.println("Has escogido: Suma primeros números");
+                    System.out.print("Introduce un número (n): ");
+                    n = lector.nextInt();
+                    int resultadoSuma = sumaPrimersNumeros(n);
+                    System.out.println("La suma de los primeros " + n + " números es: " + resultadoSuma);
+                    break;
+
+                case 3:
+                    System.out.println("Has escogido: Calcular factorial");
+                    System.out.print("Introduce un número (n): ");
+                    int numFactorial = lector.nextInt();
+                    int resultadoFactorial = calcularFactorial(numFactorial);
+                    System.out.println("El factorial de " + numFactorial + " es: " + resultadoFactorial);
+                    break;
+
+                case 4:
+                    System.out.println("Has escogido: Suma de cuadrados");
+                    System.out.print("Introduce un número (n): ");
+                    int numCuadrados = lector.nextInt();
+                    int resultadoCuadrados = sumaQuadrats(numCuadrados);
+                    System.out.println("La suma de los cuadrados de los primeros " + numCuadrados + " números es: " + resultadoCuadrados);
+                    break;
+
+                case 5:
+                    System.out.println("Has escogido: Calcular potencia");
+                    System.out.print("Introduce la base: ");
+                    int base = lector.nextInt();
+                    System.out.print("Introduce el exponente: ");
+                    int exponente = lector.nextInt();
+                    long resultadoPotencia = calcularPotencia(base, exponente);
+                    System.out.println(base + " elevado a la potencia de " + exponente + " es: " + resultadoPotencia);
+                    break;
+
+                case 6:
+                    System.out.println("Has elegido salir. ¡Hasta luego!");
+                    break;
+
+                default:
+                    System.out.println("Opción no válida. Por favor, elige una opción del 1 al 6.");
+            }
         }
-
-    public static int numcares(int repeticions) {
-    Random random = new Random();
-    int cara =0;
-    int intent =0;
-    while(intent > repeticions){
-    int moneda = random.nextInt(0,2);
-    intent++;
-    if(moneda == 1){
-     cara++;
     }
 
-    }
-    return cara;
-    
-    }
-
-    public static double PreuCinema(double Preu,boolean capdesetmana,boolean carnetjove) {
-        
-        
-        if (capdesetmana) {
-            Preu = Preu * 1.1; // Increment del 10% si és cap de setmana
-        }
-        if (carnetjove) {
-            Preu = Preu * 0.85; // Descompte del 15% si té carnet jove
-        }
-        return Preu;        
-      
-     }
-    
-
+    // Método para contar los dígitos de un número
     public static int nombreDigits(int nombre) {
         if (nombre == 0) {
-            return 1; // el 0 té un dígit
-        }        
-        int comptador = 0;
+            return 1; // El 0 tiene un dígito
+        }
+        int contador = 0;
         while (nombre != 0) {
             nombre /= 10;
-            comptador++;
+            contador++;
         }
-        return comptador;
+        return contador;
     }
 
-
-    public static  int calcularFactorial(int n) {
-    int multi = 1;
-    for (int i = 1; i <=n; i++) {
-        multi *=i;
-    }
-    return multi;
+    // Método para sumar los primeros 'n' números
+    public static int sumaPrimersNumeros(int n) {
+        int suma = 0;
+        for (int i = 1; i <= n; i++) {
+            suma += i;
         }
-    
-    public static  int sumaQuadrats(int n) {
-    int suma = 1;
-    for (int i = 1; i <=n; i++) {
-        suma +=i *i;
+        return suma;
     }
-    return suma;
 
-}
-    public static  long  calcularPotencia(int base,int exponent) {
-    long resultat = 0;
-    for (int i = 0; i < 10; i++) {
-    resultat *= base;
+    // Método para calcular el factorial de un número
+    public static int calcularFactorial(int n) {
+        int resultado = 1;
+        for (int i = 1; i <= n; i++) {
+            resultado *= i;
+        }
+        return resultado;
     }
-    return resultat;
-}
-}
 
+    // Método para sumar los cuadrados de los primeros 'n' números
+    public static int sumaQuadrats(int n) {
+        int suma = 0;
+        for (int i = 1; i <= n; i++) {
+            suma += i * i;
+        }
+        return suma;
+    }
+
+    // Método para calcular la potencia de un número (base^exponente)
+    public static long calcularPotencia(int base, int exponent) {
+        long resultado = 1;
+        for (int i = 0; i < exponent; i++) {
+            resultado *= base;
+        }
+        return resultado;
+    }
+}
