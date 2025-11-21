@@ -7,10 +7,15 @@ public class TestCalculadora {
 @Test
 public void test1() {
 assertEquals(3, Calculadora.nombreDigits(100));
+assertEquals(1, Calculadora.nombreDigits(50));
+assertEquals(1, Calculadora.nombreDigits(5));
+
 }
 @Test
 public void test2() {
     assertEquals(6, Calculadora.sumaPrimersNumeros(3));
+    assertEquals(10, Calculadora.sumaPrimersNumeros(4));
+    assertEquals(15, Calculadora.sumaPrimersNumeros(5));
 }
 @Test
 public void test3() {
